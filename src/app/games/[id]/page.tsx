@@ -1,12 +1,6 @@
-'use client'
-
 import Link from "next/link";
 import Game from "@/types/Game";
 import { getGames } from "@/services/games";
-
-export const metadata = {
-  title: "Games",
-};
 
 export default async function PostsPage() {
   const posts: Game[] = await getGames();
