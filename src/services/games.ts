@@ -1,20 +1,26 @@
 import Game from "@/types/Game";
+import { firestore } from '@/firebase'
+
 
 export async function getGames() {
-    const response = await fetch('http://localhost:3000/api/games', {
-        next: { revalidate: 3 }
+    const snapshot: any = await firestore.collection('games').get();
+    const games = snapshot.docs.map((doc: any) => {
+        const { date } = doc.data();
+        return {
+            id: doc.id,
+            date: date
+        }
     })
-    const data = await response.json();
-    return data.games;
+    return games;
 }
 
-export async function getPost(postId: string) {
-    const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
-        next: { revalidate: 3 }
-    })
-    const data = await response.json();
-    return data;
-}
+// export async function getPost(postId: string) {
+//     const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+//         next: { revalidate: 3 }
+//     })
+//     const data = await response.json();
+//     return data;
+// }
 
 // export async function savePost(post: Post) {
 //     try {

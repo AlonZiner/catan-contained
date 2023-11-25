@@ -1,5 +1,3 @@
-'use client'
-
 import Link from "next/link";
 import Game from "@/types/Game";
 import { getGames } from "@/services/games";
