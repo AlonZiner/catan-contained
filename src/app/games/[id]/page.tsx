@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Game from "@/types/Game";
 import { getGames } from "@/services/games";
+import GamesList from "@/app/components/GamesList";
 
 export default async function PostsPage() {
   const posts: Game[] = await getGames();
@@ -22,6 +23,8 @@ export default async function PostsPage() {
           </li>
         ))}
       </ul>
+      <p>Dynamic</p>
+      <GamesList/>
     </>
   );
 }
